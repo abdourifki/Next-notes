@@ -1,11 +1,11 @@
-import mongoose, {Document} from "mongoose";
+import mongoose from "mongoose";
 
-export interface ITask extends Document {
+export interface ITask {
     title: string;
     description: string;
     createdAt: Date;
 }
-const Taskschema= new mongoose.Schema({
+const Taskschema= new mongoose.Schema<ITask>({
     title: {
         type: String,
         required: true
@@ -18,7 +18,10 @@ const Taskschema= new mongoose.Schema({
         type: Date,
         default: Date.now
     }
-})
+    
+},
+
+)
 const Task = mongoose.model<ITask>('Task',Taskschema);
 
 export default Task;
