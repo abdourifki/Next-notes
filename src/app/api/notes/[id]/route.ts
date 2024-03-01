@@ -9,7 +9,7 @@ export async function GET(request:Request, {params} :{params:{id:string}}){
         const {id}=params;
         await connexion();
         const task=await Task.findOne({_id: id});
-        return NextResponse.json({task},{status: 200})
+        return NextResponse.json(task,{status: 200})
     }catch(error){
         return NextResponse.json({error},{status: 500})
     }}

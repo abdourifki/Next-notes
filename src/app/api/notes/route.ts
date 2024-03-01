@@ -6,10 +6,10 @@ import { NextResponse } from 'next/server'
 
 
 export async function POST(request: Request){
-    await connexion();
     
+    await connexion();
     try{ 
-        const {title, description}= await request.json();    
+        const {title, description}= await request.json();  
         await Task.create({title, description})
         return NextResponse.json({message:"Note Created"},{status:201})
     }catch(err:any){
