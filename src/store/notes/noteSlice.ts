@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { addNote, deleteNote, fetchNotes, updateNote } from "./noteThunk";
+import { addNote, deleteNote, fetchNotes, getOneNote, updateNote } from "./noteThunk";
 
 
 const initialState ={
@@ -18,6 +18,13 @@ const noteSlice = createSlice({
             state.error = null;
             state.note = action.payload;
         }).addCase(fetchNotes.rejected, (state, action) => {
+            state.error = action.error;
+        });
+         builder.addCase(getOneNote.fulfilled, (state, action) => {
+            state.loading = false;
+            state.error = null;
+            state.note = action.payload;
+        }).addCase(getOneNote.rejected, (state, action) => {
             state.error = action.error;
         });
         builder.addCase(addNote.fulfilled, (state, action) => {
