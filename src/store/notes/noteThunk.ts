@@ -44,8 +44,7 @@ export const addNote = createAsyncThunk('notes/addNote',
         },
         body:JSON.stringify(credentials)
     })
-    const data = await res.json()
-    return data;
+    
     }catch(error){
         const message = (error as Error).message
        return thunkAPI.rejectWithValue(message);
@@ -67,8 +66,6 @@ export const updateNote = createAsyncThunk('notes/updateNote',
             description:credentials.description
         })
     })
-    const data = await res.json()
-    return data;
     }catch(error){
         const message = (error as Error).message
        return thunkAPI.rejectWithValue(message);
@@ -80,14 +77,13 @@ export const deleteNote = createAsyncThunk('notes/deleteNote',
  async (credentials:{id:string,
     },thunkAPI)=>{
     try{
-       const res = await fetch("http://localhost:3000/api/notes",{
+       const res = await fetch(`http://localhost:3000/api/notes/${credentials.id}`,{
         method:"DELETE",
         headers:{
             "Content-Type":"application/json"
         },      
     })
-    const data = await res.json()
-    return data;
+    
     }catch(error){
         const message = (error as Error).message
        return thunkAPI.rejectWithValue(message);

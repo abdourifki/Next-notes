@@ -3,10 +3,11 @@ import { getOneNote, updateNote } from "@/store/notes/noteThunk";
 import { AppDispatch } from "@/store/store";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useRouter } from 'next/navigation';
 
 export default function Update({ params }: { params: { id: string } }) {
   const dispatch = useDispatch<AppDispatch>();
-
+  const router = useRouter()
   const [formData, setFormdata] = useState({
     title: "",
     description: "",
@@ -14,9 +15,8 @@ export default function Update({ params }: { params: { id: string } }) {
   const handleUpdate = (e: React.FormEvent) => {
     e.preventDefault(); 
     console.log("formData updated :", formData);
-
     dispatch(updateNote({id: params.id, title:formData.title, description: formData.description}));
-   
+    router.push('/', { scroll: false })
 }
 
   useEffect(() => {

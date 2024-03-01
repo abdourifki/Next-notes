@@ -3,10 +3,11 @@ import { addNote } from "@/store/notes/noteThunk";
 import { AppDispatch } from "@/store/store";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-
+import { useRouter } from 'next/navigation'
 
 
 export default function Create() {
+    const router = useRouter()
     const dispatch = useDispatch<AppDispatch>()
     const [formData, setFormData] = useState({
         title: "",
@@ -21,7 +22,10 @@ export default function Create() {
             title: "",
             description: ""
         })
-    }
+        router.push('/', { scroll: false })
+}
+
+
     return (
         <>
             <div className="flex items-center justify-center h-screen bg-slate-500 ">
