@@ -1,9 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const fetchNotes = createAsyncThunk('notes/getAllNotes',
- async (_:any, thunkAPI)=>{
+ async (_, thunkAPI)=>{
     try{
-        const response = await fetch('url')
+        const response = await fetch('http://localhost:3000/api/notes')
         const data = await response.json()
         return data;
     }catch(error){
@@ -62,7 +62,7 @@ export const deleteNote = createAsyncThunk('notes/deleteNote',
  async (credentials:{id:string,
     },thunkAPI)=>{
     try{
-       const res = await fetch("",{
+       const res = await fetch("http://localhost:3000/api/notes",{
         method:"DELETE",
         headers:{
             "Content-Type":"application/json"
