@@ -14,12 +14,14 @@ const noteSlice = createSlice({
     reducers: {},
     extraReducers:(builder)=>{
         builder.addCase(fetchNotes.fulfilled, (state, action) => {
-            state.loading = false;
             state.error = null;
+            state.loading = false;
             state.note = action.payload;
         }).addCase(fetchNotes.rejected, (state, action) => {
             state.error = action.error;
-        });
+        }).addCase(fetchNotes.pending, (state, action) => {
+            state.loading = true});
+        
          builder.addCase(getOneNote.fulfilled, (state, action) => {
             state.loading = false;
             state.error = null;

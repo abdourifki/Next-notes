@@ -3,7 +3,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 export const fetchNotes = createAsyncThunk('notes/getAllNotes',
  async (_, thunkAPI)=>{
     try{
-        const response = await fetch('https://next-notes-wheat.vercel.app/api/notes')
+        const response = await fetch('http://localhost:3000/api/notes')
         const data = await response.json()
         return data;
     }catch(error){
@@ -14,7 +14,7 @@ export const fetchNotes = createAsyncThunk('notes/getAllNotes',
 export const getOneNote = createAsyncThunk('notes/getOneNote',
  async (id:string,thunkAPI)=>{
     try{
-       const res = await fetch(`https://next-notes-wheat.vercel.app/api/notes/${id}`,{
+       const res = await fetch(`http://localhost:3000/api/notes/${id}`,{
         method:"GET",
         headers:{
             "Content-Type":"application/json"
@@ -37,7 +37,7 @@ export const addNote = createAsyncThunk('notes/addNote',
         );
         
     try{
-       const res = await fetch("https://next-notes-wheat.vercel.app/api/notes",{
+       const res = await fetch("http://localhost:3000/api/notes",{
         method:"POST",
         headers:{
             "Content-Type":"application/json"
@@ -56,7 +56,7 @@ export const updateNote = createAsyncThunk('notes/updateNote',
  async (credentials:{id:string,
     title:string,description:string},thunkAPI)=>{
     try{
-       const res = await fetch(`https://next-notes-wheat.vercel.app/api/notes/${credentials.id}`,{
+       const res = await fetch(`http://localhost:3000/api/notes/${credentials.id}`,{
         method:"PUT",
         headers:{
             "Content-Type":"application/json"
@@ -77,7 +77,7 @@ export const deleteNote = createAsyncThunk('notes/deleteNote',
  async (credentials:{id:string,
     },thunkAPI)=>{
     try{
-       const res = await fetch(`https://next-notes-wheat.vercel.app/api/notes/${credentials.id}`,{
+       const res = await fetch(`http://localhost:3000/api/notes/${credentials.id}`,{
         method:"DELETE",
         headers:{
             "Content-Type":"application/json"
